@@ -14,11 +14,11 @@ typedef struct ListNode {
     struct ListNode* link;
 } ListNode;
 
-// ¸®½ºÆ®ÀÇ ³¡¿¡ »õ·Î¿î ¶óÀÎÀ» Ãß°¡ÇÏ´Â ÇÔ¼ö
+// ë¦¬ìŠ¤íŠ¸ì˜ ëì— ìƒˆë¡œìš´ ë¼ì¸ì„ ì¶”ê°€í•˜ëŠ” í•¨ìˆ˜
 void addLine(ListNode** head, const element* newElement) {
     ListNode* newNode = (ListNode*)malloc(sizeof(ListNode));
     if (newNode == NULL) {
-        fprintf(stderr, "¸Ş¸ğ¸® ÇÒ´ç ½ÇÆĞ.\n");
+        fprintf(stderr, "ë©”ëª¨ë¦¬ í• ë‹¹ ì‹¤íŒ¨.\n");
         exit(EXIT_FAILURE);
     }
 
@@ -26,11 +26,11 @@ void addLine(ListNode** head, const element* newElement) {
     newNode->link = NULL;
 
     if (*head == NULL) {
-        // ¸®½ºÆ® ºñ¾î ÀÖ´Â °æ¿ì
+        // ë¦¬ìŠ¤íŠ¸ ë¹„ì–´ ìˆëŠ” ê²½ìš°
         *head = newNode;
     }
     else {
-        // ¸®½ºÆ®ÀÇ ³¡±îÁö ÀÌµ¿ÇØ »õ ³ëµå Ãß°¡
+        // ë¦¬ìŠ¤íŠ¸ì˜ ëê¹Œì§€ ì´ë™í•´ ìƒˆ ë…¸ë“œ ì¶”ê°€
         ListNode* current = *head;
         while (current->link != NULL) {
             current = current->link;
@@ -39,16 +39,16 @@ void addLine(ListNode** head, const element* newElement) {
     }
 }
 
-// ¸®½ºÆ®ÀÇ ÁöÁ¤µÈ À§Ä¡¿¡ »õ·Î¿î ¶óÀÎ »ğÀÔ
+// ë¦¬ìŠ¤íŠ¸ì˜ ì§€ì •ëœ ìœ„ì¹˜ì— ìƒˆë¡œìš´ ë¼ì¸ ì‚½ì…
 void insertLine(ListNode** head, int position, const element* newElement) {
     if (position < 1) {
-        fprintf(stderr, "»ğÀÔ À§Ä¡ ¿Ã¹Ù¸£Áö ¾Ê´Ù.\n");
+        fprintf(stderr, "ì‚½ì… ìœ„ì¹˜ ì˜¬ë°”ë¥´ì§€ ì•Šë‹¤.\n");
         return;
     }
 
     ListNode* newNode = (ListNode*)malloc(sizeof(ListNode));
     if (newNode == NULL) {
-        fprintf(stderr, "¸Ş¸ğ¸® ÇÒ´ç ½ÇÆĞ.\n");
+        fprintf(stderr, "ë©”ëª¨ë¦¬ í• ë‹¹ ì‹¤íŒ¨.\n");
         exit(EXIT_FAILURE);
     }
 
@@ -56,19 +56,19 @@ void insertLine(ListNode** head, int position, const element* newElement) {
     newNode->link = NULL;
 
     if (position == 1) {
-        // Ã³À½¿¡ »ğÀÔ
+        // ì²˜ìŒì— ì‚½ì…
         newNode->link = *head;
         *head = newNode;
     }
     else {
-        // ÁöÁ¤µÈ À§Ä¡¿¡ »ğÀÔ
+        // ì§€ì •ëœ ìœ„ì¹˜ì— ì‚½ì…
         ListNode* current = *head;
         for (int i = 1; i < position - 1 && current != NULL; i++) {
             current = current->link;
         }
 
         if (current == NULL) {
-            fprintf(stderr, "»ğÀÔ À§Ä¡ ¿Ã¹Ù¸£Áö ¾Ê´Ù.\n");
+            fprintf(stderr, "ì‚½ì… ìœ„ì¹˜ ì˜¬ë°”ë¥´ì§€ ì•Šë‹¤.\n");
             free(newNode);
             return;
         }
@@ -81,31 +81,31 @@ void insertLine(ListNode** head, int position, const element* newElement) {
 // Function to delete a line at a specified position in the list
 void deleteLine(ListNode** head, int position) {
     if (*head == NULL) {
-        fprintf(stderr, "¸®½ºÆ®°¡ ºñ¾î ÀÖ´Ù.»èÁ¦ÇÒ ¼ö ¾ø´Ù.\n");
+        fprintf(stderr, "ë¦¬ìŠ¤íŠ¸ê°€ ë¹„ì–´ ìˆë‹¤.ì‚­ì œí•  ìˆ˜ ì—†ë‹¤.\n");
         return;
     }
 
     if (position < 1) {
-        fprintf(stderr, "»èÁ¦ À§Ä¡ ¿Ã¹Ù¸£Áö ¾Ê´Ù.\n");
+        fprintf(stderr, "ì‚­ì œ ìœ„ì¹˜ ì˜¬ë°”ë¥´ì§€ ì•Šë‹¤.\n");
         return;
     }
 
     ListNode* temp = NULL;
 
     if (position == 1) {
-        // Ã¹ ¹øÂ° ³ëµå »èÁ¦
+        // ì²« ë²ˆì§¸ ë…¸ë“œ ì‚­ì œ
         temp = *head;
         *head = (*head)->link;
     }
     else {
-        // ÁöÁ¤µÈ À§Ä¡¿¡¼­ »èÁ¦
+        // ì§€ì •ëœ ìœ„ì¹˜ì—ì„œ ì‚­ì œ
         ListNode* current = *head;
         for (int i = 1; i < position - 1 && current != NULL; i++) {
             current = current->link;
         }
 
         if (current == NULL || current->link == NULL) {
-            fprintf(stderr, "»èÁ¦ À§Ä¡ ¿Ã¹Ù¸£Áö ¾Ê´Ù.\n");
+            fprintf(stderr, "ì‚­ì œ ìœ„ì¹˜ ì˜¬ë°”ë¥´ì§€ ì•Šë‹¤.\n");
             return;
         }
 
@@ -117,15 +117,15 @@ void deleteLine(ListNode** head, int position) {
 }
 
 
-// ¸®½ºÆ®ÀÇ ÁöÁ¤µÈ À§Ä¡¿¡¼­ ¶óÀÎ Ãâ·Â
+// ë¦¬ìŠ¤íŠ¸ì˜ ì§€ì •ëœ ìœ„ì¹˜ì—ì„œ ë¼ì¸ ì¶œë ¥
 void viewLine(ListNode* head, int position) {
     if (head == NULL) {
-        fprintf(stderr, "¸®½ºÆ®°¡ ºñ¾î ÀÖ´Ù.»èÁ¦ÇÒ ¼ö ¾ø´Ù.\n");
+        fprintf(stderr, "ë¦¬ìŠ¤íŠ¸ê°€ ë¹„ì–´ ìˆë‹¤.ì‚­ì œí•  ìˆ˜ ì—†ë‹¤.\n");
         return;
     }
 
     if (position < 1) {
-        fprintf(stderr, "Ãâ·Â À§Ä¡ ¿Ã¹Ù¸£Áö ¾Ê´Ù.\n");
+        fprintf(stderr, "ì¶œë ¥ ìœ„ì¹˜ ì˜¬ë°”ë¥´ì§€ ì•Šë‹¤.\n");
         return;
     }
 
@@ -136,14 +136,14 @@ void viewLine(ListNode* head, int position) {
     }
 
     if (current == NULL) {
-        fprintf(stderr, "Ãâ·Â À§Ä¡ ¿Ã¹Ù¸£Áö ¾Ê´Ù.\n");
+        fprintf(stderr, "ì¶œë ¥ ìœ„ì¹˜ ì˜¬ë°”ë¥´ì§€ ì•Šë‹¤.\n");
     }
     else {
         printf("(%d) %s", position, current->data.line);
     }
 }
 
-// ¸®½ºÆ®¿¡ ÇÒ´çµÈ ¸Ş¸ğ¸® ÇØÁ¦
+// ë¦¬ìŠ¤íŠ¸ì— í• ë‹¹ëœ ë©”ëª¨ë¦¬ í•´ì œ
 void freeList(ListNode* head) {
     ListNode* current = head;
     ListNode* next = NULL;
@@ -155,7 +155,7 @@ void freeList(ListNode* head) {
     }
 }
 
-// ¸®½ºÆ® ÀüÃ¼ »óÅÂ Ãâ·Â
+// ë¦¬ìŠ¤íŠ¸ ì „ì²´ ìƒíƒœ ì¶œë ¥
 void display_te(ListNode* head)
 {
     int lineNum = 1;
@@ -171,13 +171,13 @@ char askChoice(void)
 {
     char choice;
     printf("------------------------------\n");
-    printf("a: ÅØ½ºÆ® ³¡¿¡ ¶óÀÎ Ãß°¡\n");
-    printf("i: ¶óÀÎ ¹øÈ£·Î ¶óÀÎ Ãß°¡\n");
-    printf("d: ¶óÀÎ ¹øÈ£·Î ¶óÀÎ »èÁ¦\n");
-    printf("v: ¶óÀÎ ¹øÈ£·Î ÇØ´ç ¶óÀÎ Ãâ·Â\n");
-    printf("p: ÀüÃ¼ ÅØ½ºÆ® Ãâ·Â\n");
-    printf("q: ³¡\n");
-    printf("¸Ş´º ¼±ÅÃ:");
+    printf("a: í…ìŠ¤íŠ¸ ëì— ë¼ì¸ ì¶”ê°€\n");
+    printf("i: ë¼ì¸ ë²ˆí˜¸ë¡œ ë¼ì¸ ì¶”ê°€\n");
+    printf("d: ë¼ì¸ ë²ˆí˜¸ë¡œ ë¼ì¸ ì‚­ì œ\n");
+    printf("v: ë¼ì¸ ë²ˆí˜¸ë¡œ í•´ë‹¹ ë¼ì¸ ì¶œë ¥\n");
+    printf("p: ì „ì²´ í…ìŠ¤íŠ¸ ì¶œë ¥\n");
+    printf("q: ë\n");
+    printf("ë©”ë‰´ ì„ íƒ:");
     scanf(" %c", &choice);  
     return choice;
 }
@@ -191,7 +191,7 @@ int main(void) {
     while ((choice = askChoice()) != 'q') {
         switch (choice) {
         case 'a':
-            printf("ÅØ½ºÆ® ³¡¿¡ »ğÀÔÇÒ ¶óÀÎ: ");
+            printf("í…ìŠ¤íŠ¸ ëì— ì‚½ì…í•  ë¼ì¸: ");
             while (getchar() != '\n');
             fgets(newElement.line, MAX_CHAR_PER_LINE, stdin);
             addLine(&list, &newElement);
@@ -199,9 +199,9 @@ int main(void) {
             display_te(list);
             break;
         case 'i':
-            printf("»ğÀÔÇÒ ¶óÀÎ ¹øÈ£: ");
+            printf("ì‚½ì…í•  ë¼ì¸ ë²ˆí˜¸: ");
             scanf("%d", &lineNb);
-            printf("»ğÀÔÇÒ ¶óÀÎ: ");
+            printf("ì‚½ì…í•  ë¼ì¸: ");
             while (getchar() != '\n');
             fgets(newElement.line, MAX_CHAR_PER_LINE, stdin);
             insertLine(&list, lineNb, &newElement);
@@ -209,14 +209,14 @@ int main(void) {
             display_te(list);
             break;
         case 'd':
-            printf("»èÁ¦ÇÒ ¶óÀÎ ¹øÈ£: ");
+            printf("ì‚­ì œí•  ë¼ì¸ ë²ˆí˜¸: ");
             scanf("%d", &lineNb);
             deleteLine(&list, lineNb);
             printf("----------text edited---------\n");
             display_te(list);
             break;
         case 'v':
-            printf("Ãâ·ÂÇÒ ¶óÀÎ ¹øÈ£: ");
+            printf("ì¶œë ¥í•  ë¼ì¸ ë²ˆí˜¸: ");
             scanf("%d", &lineNb);
             viewLine(list, lineNb);
             break;
@@ -225,7 +225,7 @@ int main(void) {
             display_te(list);
             break;
         default:
-            printf("¿Ã¹Ù¸£Áö ¾ÊÀº ¸Ş´ºÀÔ´Ï´Ù. ´Ù½Ã ¼±ÅÃÇØÁÖ¼¼¿ä.\n");
+            printf("ì˜¬ë°”ë¥´ì§€ ì•Šì€ ë©”ë‰´ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì„ íƒí•´ì£¼ì„¸ìš”.\n");
         }
 
         if (choice != 'a' && choice != 'i')
