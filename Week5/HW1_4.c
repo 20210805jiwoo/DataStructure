@@ -3,13 +3,13 @@
 #include <stdlib.h>
 
 typedef int element;
-typedef struct ListNode { // ³ëµå Å¸ÀÔ
+typedef struct ListNode { // ë…¸ë“œ íƒ€ì…
 	element data;
 	struct ListNode* link;
 } ListNode;
 
 /*
-void print_list(ListNode* head) // Æ²¸²: ¼öÁ¤ÇØº¾½Ã´Ù
+void print_list(ListNode* head) // í‹€ë¦¼: ìˆ˜ì •í•´ë´…ì‹œë‹¤
 {
 	ListNode* p;
 
@@ -19,13 +19,13 @@ void print_list(ListNode* head) // Æ²¸²: ¼öÁ¤ÇØº¾½Ã´Ù
 		printf("%d->", p->data);
 		p = p->link;
 	} while (p != head);
-	printf("%d->", p->data); // ¸¶Áö¸· ³ëµå Ãâ·Â
+	printf("%d->", p->data); // ë§ˆì§€ë§‰ ë…¸ë“œ ì¶œë ¥
 	printf("\n");
 }
 */
 
-//¸®½ºÆ®ÀÇ Ã³À½ ³ëµåºÎÅÍ ³¡±îÁö Ãâ·ÂµÇ°Ô ÇÏ¶ó.
-//¸®½ºÆ®ÀÇ ³¡À» Ç¥½ÃÇÏµµ·Ï ÇÏ¶ó.¿¹: 10->20->30->¸®½ºÆ®ÀÇ ³¡
+//ë¦¬ìŠ¤íŠ¸ì˜ ì²˜ìŒ ë…¸ë“œë¶€í„° ëê¹Œì§€ ì¶œë ¥ë˜ê²Œ í•˜ë¼.
+//ë¦¬ìŠ¤íŠ¸ì˜ ëì„ í‘œì‹œí•˜ë„ë¡ í•˜ë¼.ì˜ˆ: 10->20->30->ë¦¬ìŠ¤íŠ¸ì˜ ë
 void print_list(ListNode* head)
 {
 	ListNode* p = head->link;
@@ -33,15 +33,15 @@ void print_list(ListNode* head)
 		printf("%d->", p->data);
 		p = p->link;
 	} while (p != head);
-	printf("¸®½ºÆ®ÀÇ ³¡\n");
+	printf("ë¦¬ìŠ¤íŠ¸ì˜ ë\n");
 }
 
-//¸®½ºÆ®ÀÇ ¸¶Áö¸· ³ëµå¸¦ »èÁ¦ÇÏ°í Çìµå³ëµå¸¦ ¹İÈ¯ÇÑ´Ù.
-//¸®½ºÆ®°¡ ºñ¾îÀÖÀ¸¸é ¡°¸®½ºÆ®°¡ ºñ¾îÀÖ¾î »èÁ¦¸¦ ¸øÇÔ¡±ÀÌ¶ó Ãâ·ÂÇÑ´Ù.
+//ë¦¬ìŠ¤íŠ¸ì˜ ë§ˆì§€ë§‰ ë…¸ë“œë¥¼ ì‚­ì œí•˜ê³  í—¤ë“œë…¸ë“œë¥¼ ë°˜í™˜í•œë‹¤.
+//ë¦¬ìŠ¤íŠ¸ê°€ ë¹„ì–´ìˆìœ¼ë©´ â€œë¦¬ìŠ¤íŠ¸ê°€ ë¹„ì–´ìˆì–´ ì‚­ì œë¥¼ ëª»í•¨â€ì´ë¼ ì¶œë ¥í•œë‹¤.
 ListNode* delete_last(ListNode* head)
 {
 	if (head == NULL) {
-		printf("¸®½ºÆ®°¡ ºñ¾îÀÖ¾î »èÁ¦¸¦ ¸øÇÔ\n");
+		printf("ë¦¬ìŠ¤íŠ¸ê°€ ë¹„ì–´ìˆì–´ ì‚­ì œë¥¼ ëª»í•¨\n");
 		return NULL;
 	}
 	if (head->link == head) {
@@ -63,7 +63,7 @@ ListNode* delete_last(ListNode* head)
 	return head;
 }
 
-//¸®½ºÆ®ÀÇ ±æÀÌ¸¦ ¹İÈ¯ÇÑ´Ù. 
+//ë¦¬ìŠ¤íŠ¸ì˜ ê¸¸ì´ë¥¼ ë°˜í™˜í•œë‹¤. 
 int get_size(ListNode* head)
 {
 	if (head == NULL) return 0;
@@ -79,7 +79,7 @@ int get_size(ListNode* head)
 	return cnt;
 }
 
-//data ¸¦ °¡Áö°í ÀÖ´Â Ã¹¹øÂ° ³ëµå¸¦ Ã£¾Æ¼­ ¹İÈ¯ÇÑ´Ù
+//data ë¥¼ ê°€ì§€ê³  ìˆëŠ” ì²«ë²ˆì§¸ ë…¸ë“œë¥¼ ì°¾ì•„ì„œ ë°˜í™˜í•œë‹¤
 ListNode* search(ListNode* head, element data)
 {
 	if (head == NULL) return NULL;
@@ -106,7 +106,7 @@ ListNode* insert_first(ListNode* head, element data)
 		node->link = head->link; // (1)
 		head->link = node; // (2)
 	}
-	return head; // º¯°æµÈ Çìµå Æ÷ÀÎÅÍ¸¦ ¹İÈ¯ÇÑ´Ù. 
+	return head; // ë³€ê²½ëœ í—¤ë“œ í¬ì¸í„°ë¥¼ ë°˜í™˜í•œë‹¤. 
 }
 
 ListNode* insert_last(ListNode* head, element data)
@@ -122,18 +122,18 @@ ListNode* insert_last(ListNode* head, element data)
 		head->link = node; // (2)
 		head = node; // (3)
 	}
-	return head; // º¯°æµÈ Çìµå Æ÷ÀÎÅÍ¸¦ ¹İÈ¯ÇÑ´Ù. 
+	return head; // ë³€ê²½ëœ í—¤ë“œ í¬ì¸í„°ë¥¼ ë°˜í™˜í•œë‹¤. 
 }
 
 ListNode* delete_first(ListNode* head)
 {
 	ListNode* temp;
 	if (head == NULL) {
-		printf("¸®½ºÆ®°¡ ºñ¾î »èÁ¦¸¦ ¸øÇÔ\n");
+		printf("ë¦¬ìŠ¤íŠ¸ê°€ ë¹„ì–´ ì‚­ì œë¥¼ ëª»í•¨\n");
 		return NULL;
 	}
 	else if (head == head->link) {
-		//Áï ÇÏ³ªÀÇ ³ëµå°¡ ³²¾ÒÀ»¶§
+		//ì¦‰ í•˜ë‚˜ì˜ ë…¸ë“œê°€ ë‚¨ì•˜ì„ë•Œ
 		temp = head;
 		head = NULL;
 		free(temp);
@@ -146,7 +146,7 @@ ListNode* delete_first(ListNode* head)
 	return head;
 }
 
-// ¿øÇü ¿¬°á ¸®½ºÆ® Å×½ºÆ® ÇÁ·Î±×·¥
+// ì›í˜• ì—°ê²° ë¦¬ìŠ¤íŠ¸ í…ŒìŠ¤íŠ¸ í”„ë¡œê·¸ë¨
 
 int main(void)
 {
@@ -163,13 +163,13 @@ int main(void)
 	head = delete_first(head);
 	print_list(head);
 	
-	printf("¸®½ºÆ®ÀÇ ±æÀÌ: %d\n", get_size(head));
+	printf("ë¦¬ìŠ¤íŠ¸ì˜ ê¸¸ì´: %d\n", get_size(head));
 
 	ListNode* searchResult = search(head, 30);
 	if (searchResult != NULL)
-		printf("Ã£Àº °ª: %d\n", searchResult->data);
+		printf("ì°¾ì€ ê°’: %d\n", searchResult->data);
 	else
-		printf("Ã£´Â °ªÀÌ ¾øÀ½\n");
+		printf("ì°¾ëŠ” ê°’ì´ ì—†ìŒ\n");
 
 	head = delete_last(head);
 	print_list(head);
