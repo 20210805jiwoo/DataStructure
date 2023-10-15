@@ -8,7 +8,7 @@ typedef struct ListNode {
 	struct ListNode* link;
 } ListNode;
 
-//¿À·ù Ã³¸® ÇÔ¼ö
+//ì˜¤ë¥˜ ì²˜ë¦¬ í•¨ìˆ˜
 void error(char* message)
 {
 	fprintf(stderr, "%s\n", message);
@@ -24,7 +24,7 @@ ListNode* insert_first(ListNode* head, element value)
 	return head;
 }
 
-//³ëµå pre µÚ¿¡ »õ·Î¿î ³ëµå »ğÀÔ
+//ë…¸ë“œ pre ë’¤ì— ìƒˆë¡œìš´ ë…¸ë“œ ì‚½ì…
 /*
 ListNode* insert(ListNode* head, ListNode* pre, element value)
 {
@@ -46,7 +46,7 @@ ListNode* delete_first(ListNode* head)
 	return head;
 }
 
-//pre°¡ °¡¸®Å°´Â ³ëµåÀÇ ´ÙÀ½ ³ëµå¸¦ »èÁ¦ÇÑ´Ù.
+//preê°€ ê°€ë¦¬í‚¤ëŠ” ë…¸ë“œì˜ ë‹¤ìŒ ë…¸ë“œë¥¼ ì‚­ì œí•œë‹¤.
 ListNode* delete(ListNode* head, ListNode* pre)
 {
 	ListNode* removed;
@@ -66,17 +66,17 @@ void delete_item(ListNode** phead, int weight)
 	}
 
 	if (current == NULL) {
-		// ¾ÆÀÌÅÛÀ» Ã£Áö ¸øÇÑ °æ¿ì
-		printf("¾ÆÀÌÅÛ %d´Â º¸À¯ÇÏ°í ÀÖÁö ¾Ê½À´Ï´Ù.\n", weight);
+		// ì•„ì´í…œì„ ì°¾ì§€ ëª»í•œ ê²½ìš°
+		printf("ì•„ì´í…œ %dëŠ” ë³´ìœ í•˜ê³  ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.\n", weight);
 		return;
 	}
 
 	if (pre == NULL) {
-		// Ã¹ ¹øÂ° ³ëµå¸¦ »èÁ¦ÇÏ´Â °æ¿ì
+		// ì²« ë²ˆì§¸ ë…¸ë“œë¥¼ ì‚­ì œí•˜ëŠ” ê²½ìš°
 		*phead = delete_first(*phead);
 	}
 	else {
-		// Áß°£ÀÌ³ª ³¡ ³ëµå¸¦ »èÁ¦ÇÏ´Â °æ¿ì
+		// ì¤‘ê°„ì´ë‚˜ ë ë…¸ë“œë¥¼ ì‚­ì œí•˜ëŠ” ê²½ìš°
 		pre->link = current->link;
 		free(current);
 	}
@@ -92,7 +92,7 @@ void display(ListNode* head)
 
 void add_item(ListNode** phead, int new_item)
 {
-	//ÇöÀç °¡Áö°í ÀÖ´Â ¾ÆÀÌÅÛÀÇ ÃÑ ¹«°Ô °è»ê
+	//í˜„ì¬ ê°€ì§€ê³  ìˆëŠ” ì•„ì´í…œì˜ ì´ ë¬´ê²Œ ê³„ì‚°
 	int total_weight = 0;
 	for (ListNode* p = *phead; p != NULL; p = p->link)
 		total_weight += p->data;
@@ -101,7 +101,7 @@ void add_item(ListNode** phead, int new_item)
 		*phead = insert_first(*phead, new_item);
 	}
 	else {
-		printf("ÃÖ´ë ¹«°Ô <100kg> ÃÊ°ú·Î ¾ÆÀÌÅÛ %d¸¦ Ãß°¡ÇÒ ¼ö ¾øÀ½\n", new_item);
+		printf("ìµœëŒ€ ë¬´ê²Œ <100kg> ì´ˆê³¼ë¡œ ì•„ì´í…œ %dë¥¼ ì¶”ê°€í•  ìˆ˜ ì—†ìŒ\n", new_item);
 	}
 	return *phead;
 }
@@ -132,7 +132,7 @@ int main(void)
 		case 'q':
 			break;
 		default:
-			printf("¿Ã¹Ù¸¥ ÀÔ·ÂÀÌ ¾Æ´Ï´Ù.\n");
+			printf("ì˜¬ë°”ë¥¸ ì…ë ¥ì´ ì•„ë‹ˆë‹¤.\n");
 		}
 
 	} while (choice != 'q');
