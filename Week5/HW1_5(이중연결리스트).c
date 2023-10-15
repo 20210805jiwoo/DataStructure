@@ -3,20 +3,20 @@
 #include <stdlib.h>
 
 typedef int element;
-typedef struct DListNode { // ÀÌÁß¿¬°á ³ëµå Å¸ÀÔ
+typedef struct DListNode { // ì´ì¤‘ì—°ê²° ë…¸ë“œ íƒ€ìž…
 	element data;
 	struct DListNode* llink;
 	struct DListNode* rlink;
 } DListNode;
 
-// ÀÌÁß ¿¬°á ¸®½ºÆ®¸¦ ÃÊ±âÈ­
+// ì´ì¤‘ ì—°ê²° ë¦¬ìŠ¤íŠ¸ë¥¼ ì´ˆê¸°í™”
 void init(DListNode* phead)
 {
 	phead->llink = phead;
 	phead->rlink = phead;
 }
 
-// ÀÌÁß ¿¬°á ¸®½ºÆ®ÀÇ ³ëµå¸¦ Ãâ·Â
+// ì´ì¤‘ ì—°ê²° ë¦¬ìŠ¤íŠ¸ì˜ ë…¸ë“œë¥¼ ì¶œë ¥
 void print_dlist(DListNode* phead)
 {
 	DListNode* p;
@@ -26,7 +26,7 @@ void print_dlist(DListNode* phead)
 	printf("\n");
 }
 
-// »õ·Î¿î µ¥ÀÌÅÍ¸¦ ³ëµå beforeÀÇ ¿À¸¥ÂÊ¿¡ »ðÀÔÇÑ´Ù.
+// ìƒˆë¡œìš´ ë°ì´í„°ë¥¼ ë…¸ë“œ beforeì˜ ì˜¤ë¥¸ìª½ì— ì‚½ìž…í•œë‹¤.
 void dinsert(DListNode* before, element data)
 {
 	DListNode* newnode = (DListNode*)malloc(sizeof(DListNode));
@@ -38,7 +38,7 @@ void dinsert(DListNode* before, element data)
 	before->rlink = newnode;
 }
 
-// ³ëµå removed¸¦ »èÁ¦ÇÑ´Ù.
+// ë…¸ë“œ removedë¥¼ ì‚­ì œí•œë‹¤.
 void ddelete(DListNode* head, DListNode* removed)
 {
 	if (removed == head) return;
@@ -48,7 +48,7 @@ void ddelete(DListNode* head, DListNode* removed)
 	free(removed);
 }
 
-// ¿ª¼øÀ¸·Î ¼øÈ¸ÇÏ¸é¼­ ÀúÀåµÈ µ¥ÀÌÅÍ °ªÀ» Ãâ·Â
+// ì—­ìˆœìœ¼ë¡œ ìˆœíšŒí•˜ë©´ì„œ ì €ìž¥ëœ ë°ì´í„° ê°’ì„ ì¶œë ¥
 void print_reverse_dlist(DListNode* head)
 {
 	DListNode* p;
@@ -58,7 +58,7 @@ void print_reverse_dlist(DListNode* head)
 	printf("\n");
 }
 
-// data ¸¦ °®´Â ³ëµå¸¦ Ã£¾Æ¼­ ¹ÝÈ¯ÇÑ´Ù
+// data ë¥¼ ê°–ëŠ” ë…¸ë“œë¥¼ ì°¾ì•„ì„œ ë°˜í™˜í•œë‹¤
 DListNode* search(DListNode* head, element data)
 {
 	DListNode* p;
@@ -70,13 +70,13 @@ DListNode* search(DListNode* head, element data)
 	return NULL;
 }
 
-// ÀÌÁß ¿¬°á ¸®½ºÆ® Å×½ºÆ® ÇÁ·Î±×·¥
+// ì´ì¤‘ ì—°ê²° ë¦¬ìŠ¤íŠ¸ í…ŒìŠ¤íŠ¸ í”„ë¡œê·¸ëž¨
 int main(void)
 {
 	DListNode* head = (DListNode*)malloc(sizeof(DListNode));
 	init(head);
-	printf("Ãß°¡ ´Ü°è\n");
-	// ¸Ç ¾Õ¿¡ ³ëµå¸¦ »ðÀÔ
+	printf("ì¶”ê°€ ë‹¨ê³„\n");
+	// ë§¨ ì•žì— ë…¸ë“œë¥¼ ì‚½ìž…
 	dinsert(head, 10);
 	print_dlist(head);
 	dinsert(head, 20);
@@ -84,20 +84,20 @@ int main(void)
 	dinsert(head, 30);
 	print_dlist(head);
 
-	// ¸Ç µÚ¿¡ ³ëµå¸¦ »ðÀÔÇÏ·Á¸é?
+	// ë§¨ ë’¤ì— ë…¸ë“œë¥¼ ì‚½ìž…í•˜ë ¤ë©´?
 	dinsert(head->llink, 99);
 	print_dlist(head);
 	
-	printf("\n»èÁ¦ ´Ü°è\n");
-	// ¸Ç ¾ÕÀÇ ³ëµå¸¦ »èÁ¦
+	printf("\nì‚­ì œ ë‹¨ê³„\n");
+	// ë§¨ ì•žì˜ ë…¸ë“œë¥¼ ì‚­ì œ
 	ddelete(head, head->rlink);
 	print_dlist(head);
 
-	// ¸Ç µÚÀÇ ³ëµå¸¦ »èÁ¦ÇÏ·Á¸é?
+	// ë§¨ ë’¤ì˜ ë…¸ë“œë¥¼ ì‚­ì œí•˜ë ¤ë©´?
 	ddelete(head, head->llink);
 	print_dlist(head);
 
-	printf("\n¿ª¼ø Ãâ·Â\n");
+	printf("\nì—­ìˆœ ì¶œë ¥\n");
 	print_reverse_dlist(head);
 
 	free(head);
